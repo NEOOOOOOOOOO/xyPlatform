@@ -1,3 +1,7 @@
+echo "========================"
+echo "= user set .userEnv.sh ="
+echo "========================"
+
 vagrant_user=$1
 echo "setting $vagrant_user user env"
 
@@ -14,9 +18,8 @@ git config --global url."https://github.com/".insteadOf git://github.com/
 
 # install node version
 export NVM_DIR="$HOME/.nvm"
-export NODE_VERSION=v8.11.1
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-nvm install $NODE_VERSION
+export NODE_VERSION=v8.11.4
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm install $NODE_VERSION
 mkdir -p ~/.npm && sudo cat /usr/share/ca-certificates/private/GeoTrustGlobalCA.crt > ~/.npm/cacerts
 
 # create .userEnv for .profile to source
@@ -52,6 +55,10 @@ npm config set cafile \$HOME/.npm/cacerts
 npm config set unsafe-perm true
 npm config set user $vagrant_user
 npm config set umask 0022
+
+# set alias for rsync between Projects and Run
+alias spr="rsync --archive --exclude .git/ --exclude node_modules/ $HOME/Projects/AutoBDD $HOME/Run"
+alias srp="rsync --archive --exclude node_modules/ $HOME/Run/ $HOME/Projects"
 
 END1
 

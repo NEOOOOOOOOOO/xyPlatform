@@ -24,7 +24,7 @@ Normally you would only need one of Ubuntu 18.04 or Ubuntu 16.04. In general Ubu
 bring up VM
 ```
 CMD> cd ~/Projects/xyPlatform/lubuntu
-CMD> vagrant up l1804Base
+CMD> VAGRANT_LOG=INFO vagrant up l1804Base 2>&1 | tee vagrant.log
 CMD> vagrant reload l1804Base (reload is only needed the first time)
 ```
 shell login from host
@@ -42,7 +42,7 @@ vagrant/vagrant
 Same as ubuntu 18.04 except change hostname with l1604Base and change ssh port 2022 to 1022.
 
 #### Deploy Docker
-We provided two Docker configuration files for our supported Ubuntu versions with mirrored configurations. For direct compairsion purpose the Ubunto version between the host and docker should be the same. For cross version checking purpose they can also be cross deployed.
+We provided two Docker configuration files for our supported Ubuntu versions with mirrored configurations. For direct compairsion purpose the Ubuntu version between the host and docker should be the same. For cross version checking purpose they can also be cross deployed.
 
 ###### Build Ubuntu 18.04 Docker
 ```
